@@ -1,0 +1,35 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    # 'native' = read from local files (default here / docker volume).
+    # Switch to 'git' in production by setting SPRING_PROFILES_ACTIVE=git.
+    active: ${CONFIG_PROFILE:native}
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: ${CONFIG_SEARCH_LOCATIONS:file:./config-repo,classpath:/config-repo}
+        git:
+          uri: ${CONFIG_GIT_URI:https://github.com/krishna-shop/config-repo.git}
+          default-label: ${CONFIG_GIT_BRANCH:main}
+          clone-on-start: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+# Config server does NOT register with Eureka to avoid a bootstrap cycle;
+# services reach it via a fixed URL (CONFIG_SERVER_URI).
+eureka:
+  client:
+    enabled: false

@@ -1,0 +1,22 @@
+server:
+  port: 8087
+
+spring:
+  kafka:
+    consumer:
+      group-id: notification-service
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:1025}      # MailHog in local dev
+    username: ${SMTP_USER:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail.smtp.auth: ${SMTP_AUTH:false}
+      mail.smtp.starttls.enable: ${SMTP_TLS:false}
+
+notification:
+  from-address: no-reply@krishna.shop
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

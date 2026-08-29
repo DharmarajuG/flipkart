@@ -1,0 +1,18 @@
+server:
+  port: 8083
+
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2s
+
+# Cart TTL: abandon carts after 7 days of inactivity.
+cart:
+  ttl-days: 7
+  product-service-url: http://product-service   # resolved via Eureka + LoadBalancer
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
