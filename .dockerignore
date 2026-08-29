@@ -1,0 +1,11 @@
+# Keep build contexts lean and reproducible
+**/target/
+**/*.class
+**/.idea/
+**/*.iml
+**/.vscode/
+**/.git/
+**/.gitignore
+**/*.log
+**/node_modules/
+# Do NOT ignore config-repo — config-server needs it at runtime
