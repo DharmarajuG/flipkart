@@ -40,7 +40,7 @@ curl -fsS -X POST "$GATEWAY/api/cart/items" "${AUTH[@]}" \
   -d '{"productId":1,"quantity":2}' >/dev/null
 
 echo "==> 4. Place order"
-ORDER_ID=$(curl -fsS -X POST "$GATEWAY/api/orders" "${AUTH[@]}" | json_get orderId)
+ORDER_ID=$(curl -fsS -X POST "$GATEWAY/api/orders" "${AUTH[@]}" | json_get id)
 [ -n "$ORDER_ID" ] || { echo "!! no orderId returned"; exit 1; }
 echo "    order = $ORDER_ID"
 
